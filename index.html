@@ -2,124 +2,27 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Index Page</title>
+  <title>Index</title>
   <style>
-    .hidden { display: none; }
-    .dongle-entry { border: 1px solid #ccc; padding: 10px; margin-top: 20px; }
-    .box { border: 1px solid #000; display: inline-block; padding: 20px; margin: 5px; cursor: pointer; }
+    body { font-family: sans-serif; }
+    .box {
+      border: 1px solid #333; 
+      padding: 20px; 
+      margin: 10px; 
+      display: inline-block; 
+      cursor: pointer;
+    }
+    nav { margin-bottom: 20px; }
   </style>
 </head>
 <body>
-  <!-- Main Options -->
-  <h1>Class 10 Sets</h1>
-  <div id="options">
-    <div class="box" id="option1">Option 1</div>
-    <div class="box" id="option2">Option 2</div>
-    <div class="box" id="option3">Option 3</div>
-  </div>
+  <h1>Welcome to the Prototype</h1>
+  <nav>
+    <button onclick="location.href='class10.html'">Class10</button>
+    <button onclick="location.href='class8.html'">Class8</button>
+    <button onclick="location.href='feedback.html'">Feedback</button>
+  </nav>
   
-  <!-- Publication Section -->
-  <h2>Publication (Question)</h2>
-  <p>Subheading for Publication</p>
-  
-  <!-- Asmita Section -->
-  <div id="asmita">
-    <h3>Asmita</h3>
-    <div id="neema">
-      <h4>Neema</h4>
-      <button id="requestDongle">Request Dongle</button>
-      <div id="requestOptions" class="hidden">
-        <button>Request via Social Media</button>
-        <button>Request via Email</button>
-      </div>
-    </div>
-  </div>
-  
-  <!-- Asmita Publication (Answers) Section -->
-  <div id="asmitaPublication">
-    <h2>Asmita Publication (Answers)</h2>
-    <ul>
-      <li><a href="english.html">English</a></li>
-      <li><a href="nepali.html">Nepali</a></li>
-      <li><a href="social.html">Social</a></li>
-      <li><a href="math.html">Math</a></li>
-    </ul>
-    <button id="thankYouBtn">Thank You</button>
-    <div id="dongleSection" class="dongle-entry hidden">
-      <h3>Enter the Dongle for Respective Subjects</h3>
-      <div id="dongleInputs">
-        <div id="dongleEnglish">
-          <label>English: </label>
-          <input type="text" id="dongleEnglishInput" placeholder="Enter dongle">
-          <button onclick="submitDongle('english')">Submit</button>
-        </div>
-        <div id="dongleNepali">
-          <label>Nepali: </label>
-          <input type="text" id="dongleNepaliInput" placeholder="Enter dongle">
-          <button onclick="submitDongle('nepali')">Submit</button>
-        </div>
-        <div id="dongleSocial">
-          <label>Social: </label>
-          <input type="text" id="dongleSocialInput" placeholder="Enter dongle">
-          <button onclick="submitDongle('social')">Submit</button>
-        </div>
-        <div id="dongleMath">
-          <label>Math: </label>
-          <input type="text" id="dongleMathInput" placeholder="Enter dongle">
-          <button onclick="submitDongle('math')">Submit</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <script>
-    // Toggle request options on "Request Dongle" button click
-    document.getElementById('requestDongle').addEventListener('click', function() {
-      document.getElementById('requestOptions').classList.toggle('hidden');
-    });
-    
-    // Reveal dongle entry section after five clicks on Thank You button
-    let thankYouCount = 0;
-    document.getElementById('thankYouBtn').addEventListener('click', function() {
-      thankYouCount++;
-      if (thankYouCount >= 5) {
-        document.getElementById('dongleSection').classList.remove('hidden');
-      }
-    });
-    
-    // Function to handle dongle submission
-    function submitDongle(subject) {
-      const inputId = 'dongle' + subject.charAt(0).toUpperCase() + subject.slice(1) + 'Input';
-      const dongleValue = document.getElementById(inputId).value.trim();
-      
-      // Valid dongles per subject
-      const validDongles = {
-        english: 'class10/asmita/english/abc',
-        nepali: 'class10/asmita/nepali/def',
-        social:  'class10/asmita/social/ghi',
-        math:    'class10/asmita/math/jkl'
-      };
-      
-      if (dongleValue === validDongles[subject]) {
-        // Save to localStorage and as a cookie
-        localStorage.setItem('dongle_' + subject, dongleValue);
-        document.cookie = 'dongle_' + subject + '=' + dongleValue + '; path=/';
-        alert(subject.charAt(0).toUpperCase() + subject.slice(1) + ' access granted!');
-        // Hide the input section for that subject if already submitted
-        document.getElementById('dongle' + subject.charAt(0).toUpperCase() + subject.slice(1)).style.display = 'none';
-      } else {
-        alert('Invalid dongle for ' + subject);
-      }
-    }
-    
-    // On page load, hide dongle input sections for subjects already submitted
-    window.addEventListener('load', function() {
-      ['english','nepali','social','math'].forEach(function(subject) {
-        if (localStorage.getItem('dongle_' + subject)) {
-          document.getElementById('dongle' + subject.charAt(0).toUpperCase() + subject.slice(1)).style.display = 'none';
-        }
-      });
-    });
-  </script>
+  <p>This is the landing page. Click a button above to navigate.</p>
 </body>
 </html>
